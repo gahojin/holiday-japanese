@@ -1,4 +1,4 @@
-# holiday_jp
+# holiday-japanese
 
 日本の祝日判定ユーティリティ
 
