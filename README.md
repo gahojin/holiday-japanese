@@ -3,7 +3,7 @@
 日本の祝日判定ユーティリティ
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![NPM Version](https://img.shields.io/npm/v/%40gahojin-inc%2Fdate-fns-japan?activeTab=versions)](https://www.npmjs.com/package/@gahojin-inc/holiday_jp)
+[![NPM Version](https://img.shields.io/npm/v/%40gahojin-inc%2Fholiday-japanese?activeTab=versions)](https://www.npmjs.com/package/@gahojin-inc/holiday-japanese)
 
 
 
