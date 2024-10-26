@@ -65,6 +65,9 @@ jobs:
       - name: Run Unit tests
         run: pnpm run test:unit
 
+      - name: Run benchmarks
+        run: pnpm run bench --run
+
       - name: Commit changes
         if: ${{ github.event_name == 'pull_request' }}
         uses: stefanzweifel/git-auto-commit-action@v5
