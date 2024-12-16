@@ -49,7 +49,7 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "0.17.1",
     "@biomejs/biome": "1.9.4",
-    "@commitlint/cli": "19.6.0",
+    "@commitlint/cli": "19.6.1",
     "@commitlint/config-conventional": "19.6.0",
     "@holiday-jp/holiday_jp": "2.4.0",
     "@types/node": "20.17.10",
