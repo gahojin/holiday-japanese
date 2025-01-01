@@ -52,7 +52,7 @@
     "@commitlint/cli": "19.6.1",
     "@commitlint/config-conventional": "19.6.0",
     "@holiday-jp/holiday_jp": "2.4.0",
-    "@types/node": "20.17.10",
+    "@types/node": "20.17.11",
     "@vitest/coverage-v8": "2.1.8",
     "husky": "9.1.7",
     "jest-extended": "4.0.2",
