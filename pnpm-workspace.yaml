@@ -1,0 +1,9 @@
+overrides:
+  esbuild: $esbuild
+
+ignoredBuiltDependencies:
+  - '@biomejs/biome'
+
+onlyBuiltDependencies:
+  - esbuild
+  - lefthook
