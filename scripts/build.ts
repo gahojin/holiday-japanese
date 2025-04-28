@@ -7,7 +7,7 @@ const dataset: Record<string, string> = parse(text.toString())
 
 const code = ['// Generated from holidays.yml']
 code.push(
-  `const d = new Set([${Object.keys(dataset)
+  `const d: Set<number> = new Set([${Object.keys(dataset)
     .map((d) => d.replaceAll('-', ''))
     .join(',')}])`,
 )
