@@ -1,6 +1,6 @@
-import { isHoliday } from '@/index'
 import { isHoliday as holidayJpIsHoliday } from '@holiday-jp/holiday_jp'
 import { bench, describe } from 'vitest'
+import { isHoliday } from './index'
 
 describe('benchmark test: "isHoliday"', () => {
   bench('holiday-japanese', () => {

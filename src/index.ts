@@ -1,4 +1,4 @@
-import { holidays } from '@/holidays'
+import { holidays } from './holidays'
 
 const dateToNumber = (date: Date): number => {
   const year = date.getFullYear()

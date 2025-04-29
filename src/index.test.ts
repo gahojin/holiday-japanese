@@ -1,5 +1,5 @@
-import { isHoliday } from '@/index'
 import { parse } from 'yaml'
+import { isHoliday } from './index'
 
 const HOLIDAYS_URL = 'https://raw.githubusercontent.com/holiday-jp/holiday_jp/master/holidays.yml'
 
