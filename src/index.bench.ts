@@ -1,4 +1,5 @@
 import { between as holidayJpBetween, isHoliday as holidayJpIsHoliday } from '@holiday-jp/holiday_jp'
+import { getHolidaysOf, isHoliday as japaneseHolidaysIsHoliday } from 'japanese-holidays'
 import { bench, describe } from 'vitest'
 import { between, isHoliday } from './index'
 
@@ -12,6 +13,11 @@ describe('benchmark test: "isHoliday"', () => {
     holidayJpIsHoliday(new Date('2024-10-14'))
     holidayJpIsHoliday(new Date('2024-10-15'))
   })
+
+  bench('japanese-holidays', () => {
+    japaneseHolidaysIsHoliday(new Date('2024-10-14'))
+    japaneseHolidaysIsHoliday(new Date('2024-10-15'))
+  })
 })
 
 describe('benchmark test: "between"', () => {
@@ -21,5 +27,9 @@ describe('benchmark test: "between"', () => {
 
   bench('holiday_jp', () => {
     holidayJpBetween(new Date('2020-01-01'), new Date('2020-12-31'))
+  })
+
+  bench('japanese-holidays', () => {
+    getHolidaysOf(2020, true)
   })
 })
