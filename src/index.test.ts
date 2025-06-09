@@ -1,7 +1,11 @@
+import { between as holidayJpBetween } from '@holiday-jp/holiday_jp'
+import { getHolidaysOf } from 'japanese-holidays'
 import { parse } from 'yaml'
 import { between, isHoliday } from './index'
 
 const HOLIDAYS_URL = 'https://raw.githubusercontent.com/holiday-jp/holiday_jp/master/holidays.yml'
+
+const HOLIDAY_IN_LIEU_PATTERN = / 振替休日$/
 
 type Scenario = {
   name: string
@@ -128,5 +132,33 @@ describe.each(scenarios)('between', ({ name, timezone, systemTimeUtc }) => {
     ])
 
     expect(between(new Date(2024, 1, 30), new Date(2024, 2, 1))).toBeEmpty()
+  })
+
+  it(`${name}: 他ライブラリとのデータ互換性チェック`, () => {
+    for (let year = 2020; year < 2050; year++) {
+      const thisLibrary = between(new Date(year, 0, 1), new Date(year, 11, 31)).map((a) => {
+        let name = a.nameJa
+        if (HOLIDAY_IN_LIEU_PATTERN.test(name)) {
+          name = '振替休日'
+        }
+        return name
+      })
+      const japaneseHolidays = getHolidaysOf(year).map((a) => {
+        let name = a.name
+        if (name === '国民の休日') {
+          name = '休日'
+        }
+        return name
+      })
+      const holidayJp = holidayJpBetween(new Date(year, 0, 1), new Date(year, 11, 31)).map((a) => {
+        let name = a.name
+        if (HOLIDAY_IN_LIEU_PATTERN.test(name)) {
+          name = '振替休日'
+        }
+        return name
+      })
+      expect(thisLibrary).toEqual(japaneseHolidays)
+      expect(thisLibrary).toEqual(holidayJp)
+    }
   })
 })
