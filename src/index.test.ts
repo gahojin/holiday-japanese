@@ -1,5 +1,5 @@
 import { parse } from 'yaml'
-import { isHoliday } from './index'
+import { between, isHoliday } from './index'
 
 const HOLIDAYS_URL = 'https://raw.githubusercontent.com/holiday-jp/holiday_jp/master/holidays.yml'
 
@@ -41,5 +41,33 @@ describe('isHoliday', () => {
     for (const date of Object.keys(dataset)) {
       expect(isHoliday(new Date(date))).toBeTrue()
     }
+  })
+})
+
+describe('between', () => {
+  it('特定の日チェック', () => {
+    expect(between(new Date(2025, 0, 1), new Date(2025, 0, 31))).toEqual([
+      { date: new Date(2025, 0, 1), nameJa: '元日', nameEn: `New Year's Day` },
+      { date: new Date(2025, 0, 13), nameJa: '成人の日', nameEn: 'Coming of Age Day' },
+    ])
+  })
+
+  it('境界チェック', () => {
+    expect(between(new Date(2025, 0, 2), new Date(2025, 0, 12))).toBeEmpty()
+    expect(between(new Date(2025, 0, 1), new Date(2025, 0, 12))).toEqual([{ date: new Date(2025, 0, 1), nameJa: '元日', nameEn: `New Year's Day` }])
+    expect(between(new Date(2025, 0, 13), new Date(2025, 0, 31))).toEqual([
+      { date: new Date(2025, 0, 13), nameJa: '成人の日', nameEn: 'Coming of Age Day' },
+    ])
+    expect(between(new Date(2025, 0, 11), new Date(2025, 0, 31))).toEqual([
+      { date: new Date(2025, 0, 13), nameJa: '成人の日', nameEn: 'Coming of Age Day' },
+    ])
+    expect(between(new Date(2025, 0, 1), new Date(2025, 0, 1))).toEqual([{ date: new Date(2025, 0, 1), nameJa: '元日', nameEn: `New Year's Day` }])
+
+    expect(between(new Date(1970, 0, 1), new Date(1970, 0, 15))).toEqual([
+      { date: new Date(1970, 0, 1), nameJa: '元日', nameEn: `New Year's Day` },
+      { date: new Date(1970, 0, 15), nameJa: '成人の日', nameEn: 'Coming of Age Day' },
+    ])
+
+    expect(between(new Date(2024, 1, 30), new Date(2024, 2, 1))).toBeEmpty()
   })
 })
