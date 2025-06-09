@@ -26,32 +26,16 @@ const fromEpochDay = (day: number): Date => {
   return r
 }
 
-// 2分探索により祝日を抽出する
+// ハッシュテーブルにより祝日かの判定を行う
+
+const holidaySet = new Set(holidays.filter((_, i) => i % 2 === 0))
 
 const isHoliday = (date: Date): boolean => {
   const epochDay = toEpochDay(date)
-
-  let low = 0
-  let high = HOLIDAYS_HIGH
-  let foundIndex = -1
-
-  while (low <= high) {
-    const mid = (low + high) >> 1
-    const currentDay = holidays[mid << 1]
-    if (currentDay === epochDay) {
-      // 見つかった
-      foundIndex = mid
-      break
-    }
-    if (currentDay < epochDay) {
-      low = mid + 1
-    } else {
-      high = mid - 1
-    }
-  }
-
-  return foundIndex !== -1
+  return holidaySet.has(epochDay)
 }
+
+// 2分探索により祝日を抽出する
 
 const between = (start: Date, end: Date): Holiday[] => {
   const epochStartDay = toEpochDay(start)
