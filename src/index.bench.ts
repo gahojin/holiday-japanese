@@ -1,7 +1,26 @@
 import { between as holidayJpBetween, isHoliday as holidayJpIsHoliday } from '@holiday-jp/holiday_jp'
 import { getHolidaysOf, isHoliday as japaneseHolidaysIsHoliday } from 'japanese-holidays'
+import { rawHolidays } from 'src/holidays_testdata'
 import { bench, describe } from 'vitest'
 import { between, isHoliday } from './index'
+
+// 祝日かの判定しかできないSet (旧実装と同等コード)
+const dateToNumber = (date: Date): number => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return year * 10000 + month * 100 + day
+}
+const holidaySet = new Set(
+  rawHolidays.map((day) => {
+    const r = new Date(1970, 0, 1)
+    r.setDate(r.getDate() + day)
+    return dateToNumber(r)
+  }),
+)
+const setVersionIsHoliday = (date: Date): boolean => {
+  return holidaySet.has(dateToNumber(date))
+}
 
 describe('benchmark test: "isHoliday"', () => {
   bench('holiday-japanese', () => {
@@ -17,6 +36,11 @@ describe('benchmark test: "isHoliday"', () => {
   bench('japanese-holidays', () => {
     japaneseHolidaysIsHoliday(new Date('2024-10-14'))
     japaneseHolidaysIsHoliday(new Date('2024-10-15'))
+  })
+
+  bench('set', () => {
+    setVersionIsHoliday(new Date('2024-10-14'))
+    setVersionIsHoliday(new Date('2024-10-15'))
   })
 })
 
