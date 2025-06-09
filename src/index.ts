@@ -1,9 +1,9 @@
 import { holidays, names } from './holidays'
 
-// 基準日
-const EPOCH_MILLISECONDS = Date.UTC(1970, 0, 1)
+const MINUTES_MILLISECONDS = 1000 * 60
 
-const DATE_MILLISECONDS = 1000 * 60 * 60 * 24
+// 基準日
+const DATE_MILLISECONDS = MINUTES_MILLISECONDS * 60 * 24
 
 // 祝日データは、基準日からの日数と名称インデックスの順で格納されている
 const HOLIDAYS_LENGTH = holidays.length
@@ -16,7 +16,8 @@ type Holiday = {
 }
 
 const toEpochDay = (date: Date): number => {
-  return Math.floor((date.getTime() - EPOCH_MILLISECONDS) / DATE_MILLISECONDS)
+  const offsetMillis = date.getTimezoneOffset() * MINUTES_MILLISECONDS
+  return Math.floor((date.getTime() - offsetMillis) / DATE_MILLISECONDS)
 }
 
 const fromEpochDay = (day: number): Date => {
