@@ -10,8 +10,12 @@
     "type": "git",
     "url": "https://github.com/gahojin/holiday-japanese.git"
   },
-  "files": ["dist"],
-  "keywords": ["holidays"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "holidays"
+  ],
   "publishConfig": {
     "access": "public",
     "provenance": true
