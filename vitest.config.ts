@@ -1,5 +1,5 @@
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { type UserConfigExport, coverageConfigDefaults, defineConfig } from 'vitest/config'
+import { coverageConfigDefaults, defineConfig, type UserConfigExport } from 'vitest/config'
 
 const config: UserConfigExport = {
   plugins: [tsconfigPaths()],

@@ -48,7 +48,6 @@ const scenarios: Scenario[] = [
 
 describe.each(scenarios)('isHoliday', ({ name, timezone, systemTimeUtc }) => {
   beforeAll(() => {
-    // biome-ignore lint/nursery/noProcessEnv: テスト
     process.env.TZ = timezone
     vi.setSystemTime(new Date(systemTimeUtc))
   })
@@ -99,7 +98,6 @@ describe.each(scenarios)('isHoliday', ({ name, timezone, systemTimeUtc }) => {
 
 describe.each(scenarios)('between', ({ name, timezone, systemTimeUtc }) => {
   beforeAll(() => {
-    // biome-ignore lint/nursery/noProcessEnv: テスト
     process.env.TZ = timezone
     vi.setSystemTime(new Date(systemTimeUtc))
   })
