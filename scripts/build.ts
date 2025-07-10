@@ -47,14 +47,15 @@ for (const info of Object.values(dataset)) {
 // 日付順にする
 tmpHolidaysData.sort((a, b) => a[0] - b[0])
 
-// 2次配列を1次配列のバイナリにエンコード (通し日数(2バイト) + 名称インデックス(1バイト)
-const buffer = Buffer.alloc(tmpHolidaysData.length * 3)
+// 2次配列を1次配列のバイナリにエンコード (通し日数(差分 1バイト) + 名称インデックス(1バイト)
+const buffer = Buffer.alloc(tmpHolidaysData.length << 1)
 let offset = 0
+let prevDay = 0
 for (const [day, index] of tmpHolidaysData) {
-  buffer.writeUInt16LE(day, offset)
-  offset += 2
-  buffer.writeUInt8(index, offset)
-  offset++
+  const diff = day - prevDay
+  prevDay = day
+  buffer.writeUInt8(diff, offset++)
+  buffer.writeUInt8(index, offset++)
 }
 
 // 2次配列を1次配列に変換 (バイナリ化テスト用)
