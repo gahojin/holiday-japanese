@@ -20,14 +20,11 @@ const toEpochDay = (date: Date): number => {
   return Math.floor((date.getTime() - offsetMillis) / DATE_MILLISECONDS)
 }
 
-const fromEpochDay = (day: number): Date => {
-  const r = new Date(1970, 0, 1)
-  r.setDate(r.getDate() + day)
-  return r
+const fromEpochDay = (day: number, timezoneOffset: number): Date => {
+  return new Date(day * DATE_MILLISECONDS + timezoneOffset)
 }
 
 // ハッシュテーブルにより祝日かの判定を行う
-
 const holidaySet = new Set(holidays.filter((_, i) => i % 2 === 0))
 
 const isHoliday = (date: Date): boolean => {
@@ -40,6 +37,7 @@ const isHoliday = (date: Date): boolean => {
 const between = (start: Date, end: Date): Holiday[] => {
   const epochStartDay = toEpochDay(start)
   const epochEndDay = toEpochDay(end)
+  const timezoneOffset = start.getTimezoneOffset() * MINUTES_MILLISECONDS
 
   let low = 0
   let high = HOLIDAYS_HIGH
@@ -67,7 +65,7 @@ const between = (start: Date, end: Date): Holiday[] => {
     }
     const name = names[nameIndex]
     result.push({
-      date: fromEpochDay(date),
+      date: fromEpochDay(date, timezoneOffset),
       nameJa: name[0],
       nameEn: name[1],
     })
