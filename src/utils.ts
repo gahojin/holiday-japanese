@@ -2,16 +2,10 @@
 const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null
 
 const decodeHolidays = (data: string): number[] => {
-  let decodedBytes: Uint8Array
-  if (isNode) {
-    decodedBytes = Buffer.from(data, 'base64')
-  } else {
-    decodedBytes = Uint8Array.from(atob(data), (c) => c.charCodeAt(0))
-  }
-  const len = decodedBytes.byteLength
+  const t = isNode ? Buffer.from(data, 'base64') : Uint8Array.from(atob(data), (c) => c.charCodeAt(0))
+  const view = new DataView(t.buffer, t.byteOffset, t.byteLength)
+  const len = view.byteLength
   const n = Math.floor(len / 3)
-
-  const view = new DataView(decodedBytes.buffer, 0, len)
   const holidays = new Array<number>(n << 1)
 
   let offset = 0
