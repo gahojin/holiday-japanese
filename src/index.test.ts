@@ -130,6 +130,9 @@ describe.each(scenarios)('between', ({ name, timezone, systemTimeUtc }) => {
     ])
 
     expect(between(new Date(2024, 1, 30), new Date(2024, 2, 1))).toBeEmpty()
+
+    // データセットから外れた年の場合
+    expect(between(new Date(3000, 1, 30), new Date(3000, 2, 10))).toBeEmpty()
   })
 
   it(`${name}: 他ライブラリとのデータ互換性チェック`, () => {

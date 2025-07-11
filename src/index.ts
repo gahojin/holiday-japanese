@@ -41,7 +41,7 @@ const between = (start: Date, end: Date): Holiday[] => {
 
   let low = 0
   let high = HOLIDAYS_HIGH
-  let startIndex = 0
+  let startIndex = high + 1
 
   // 開始日以降のデータ位置抽出
   while (low <= high) {
@@ -57,7 +57,7 @@ const between = (start: Date, end: Date): Holiday[] => {
 
   const result: Holiday[] = []
   let i = startIndex << 1
-  do {
+  while (i < HOLIDAYS_LENGTH) {
     const date = holidays[i]
     const nameIndex = holidays[i + 1]
     if (date > epochEndDay) {
@@ -70,7 +70,7 @@ const between = (start: Date, end: Date): Holiday[] => {
       nameEn: name[1],
     })
     i += 2
-  } while (i < HOLIDAYS_LENGTH)
+  }
 
   return result
 }
