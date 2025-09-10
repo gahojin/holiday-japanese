@@ -71,6 +71,5 @@
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "3.2.4",
     "yaml": "2.8.1"
-  },
-  "packageManager": "pnpm@10.13.1"
+  }
 }
