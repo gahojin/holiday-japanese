@@ -1,7 +1,7 @@
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { coverageConfigDefaults, defineConfig, type UserConfigExport } from 'vitest/config'
+import { coverageConfigDefaults, defineConfig } from 'vitest/config'
 
-const config: UserConfigExport = {
+export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     environment: 'node',
@@ -11,6 +11,4 @@ const config: UserConfigExport = {
       exclude: [...coverageConfigDefaults.exclude, './scripts/**'],
     },
   },
-}
-
-export default defineConfig(config)
+})
