@@ -78,7 +78,7 @@ jobs:
         run: pnpm run check:packagejson
 
       - name: Run Linter & Formatter
-        run: pnpm biome ci .
+        run: pnpm run lint
 
       - name: Run Typescript check
         run: pnpm run check
