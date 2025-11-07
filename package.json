@@ -71,13 +71,5 @@
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "4.0.5",
     "yaml": "2.8.1"
-  },
-  "pnpm": {
-    "ignoredBuiltDependencies": [
-      "esbuild"
-    ],
-    "onlyBuiltDependencies": [
-      "lefthook"
-    ]
   }
 }
