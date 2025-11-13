@@ -2,7 +2,6 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { parse } from 'yaml'
 
-type HolidayName = [string, string]
 type HolidayDate = [number, number]
 
 const DATE_MILLISECONDS = 1000 * 60 * 60 * 24
@@ -20,7 +19,7 @@ const dataset: { [date: string]: { date: string; name: string; name_en: string }
 // 祝日名を集約する
 const tmpHolidaysData: HolidayDate[] = []
 const nameToIndexMap = new Map<string, number>()
-const holidayNames: HolidayName[] = []
+const holidayNames: string[] = []
 for (const info of Object.values(dataset)) {
   const date = info.date
   const nameJa = info.name
@@ -36,12 +35,18 @@ for (const info of Object.values(dataset)) {
   let index = nameToIndexMap.get(key)
   if (index === undefined) {
     index = holidayNames.length
-    holidayNames.push([nameJa, nameEn])
+    holidayNames.push(nameJa, nameEn)
     nameToIndexMap.set(key, index)
   }
 
   const epochDay = toEpochDay(date)
   tmpHolidaysData.push([epochDay, index])
+}
+
+// 祝日インデックス最大値チェック
+if (holidayNames.length > 255) {
+  console.warn(`祝日インデックス最大値オーバー. ${holidayNames.length}`)
+  process.exit(1)
 }
 
 // 日付順にする
@@ -68,9 +73,7 @@ for (const [day, index] of tmpHolidaysData) {
 const code = `// Generated from holidays_detailed.yml
 import { decodeHolidays } from './utils'
 
-type HolidayName = [string, string]
-
-const names: HolidayName[] = ${JSON.stringify(holidayNames)}
+const names: string[] = ${JSON.stringify(holidayNames)}
 const holidays: number[] = decodeHolidays('${buffer.toString('base64')}')
 
 export { names, holidays }
