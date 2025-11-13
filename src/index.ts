@@ -63,11 +63,10 @@ const between = (start: Date, end: Date): Holiday[] => {
     if (date > epochEndDay) {
       break
     }
-    const name = names[nameIndex]
     result.push({
       date: fromEpochDay(date, timezoneOffset),
-      nameJa: name[0],
-      nameEn: name[1],
+      nameJa: names[nameIndex],
+      nameEn: names[nameIndex + 1],
     })
     i += 2
   }
