@@ -1,5 +1,5 @@
-import { encodedHolidays, rawHolidays } from 'src/holidays_testdata'
-import { decodeHolidays } from 'src/utils'
+import { encodedHolidays, rawHolidays } from '~/holidays_testdata'
+import { decodeHolidays } from '~/utils'
 
 describe('decodeHolidays', () => {
   it('バイナリ化データと生データが同一か', () => {

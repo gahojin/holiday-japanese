@@ -5,10 +5,16 @@ export default defineConfig([
   {
     external: [],
     treeshake: true,
+    optimization: {
+      inlineConst: true,
+    },
+    experimental: {
+      nativeMagicString: true,
+    },
     input: 'src/index.ts',
     output: [
-      { format: 'esm', entryFileNames: '[name].mjs', sourcemap: true },
-      { format: 'cjs', entryFileNames: '[name].cjs', sourcemap: true, exports: 'named' },
+      { dir: 'dist', format: 'esm', entryFileNames: '[name].mjs', sourcemap: true, cleanDir: true },
+      { dir: 'dist', format: 'cjs', entryFileNames: '[name].cjs', sourcemap: true, exports: 'named' },
     ],
     plugins: [IsolatedDecl()],
   },
