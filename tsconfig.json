@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "baseUrl": ".",
     "outDir": "dist",
     "target": "ES2022",
     "module": "ES2022",
@@ -27,7 +26,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "newLine": "lf",
-    "types": ["@types/node", "vitest/globals", "jest-extended"]
+    "types": ["@types/node", "vitest/globals", "jest-extended"],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["dist", "node_modules"]

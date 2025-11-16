@@ -1,7 +1,7 @@
 import { between as holidayJpBetween } from '@holiday-jp/holiday_jp'
 import { getHolidaysOf } from 'japanese-holidays'
 import { parse } from 'yaml'
-import { between, isHoliday } from './index'
+import { between, isHoliday } from '~/index'
 
 const HOLIDAYS_URL = 'https://raw.githubusercontent.com/holiday-jp/holiday_jp/master/holidays.yml'
 
