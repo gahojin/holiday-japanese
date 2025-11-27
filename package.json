@@ -56,7 +56,7 @@
     "@holiday-jp/holiday_jp": "2.5.1",
     "@types/japanese-holidays": "1.0.3",
     "@types/node": "24.10.1",
-    "@typescript/native-preview": "7.0.0-dev.20251119.1",
+    "@typescript/native-preview": "7.0.0-dev.20251120.1",
     "@vitest/coverage-v8": "4.0.10",
     "japanese-holidays": "1.0.10",
     "jest-extended": "7.0.0",
@@ -66,7 +66,7 @@
     "tsx": "4.20.6",
     "typescript": "5.9.3",
     "unplugin-isolated-decl": "0.15.6",
-    "vite": "7.2.2",
+    "vite": "7.2.4",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "4.0.10",
     "yaml": "2.8.1"
