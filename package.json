@@ -56,8 +56,8 @@
     "@holiday-jp/holiday_jp": "2.5.1",
     "@types/japanese-holidays": "1.0.3",
     "@types/node": "24.10.4",
-    "@typescript/native-preview": "7.0.0-dev.20251215.1",
-    "@vitest/coverage-v8": "4.0.15",
+    "@typescript/native-preview": "7.0.0-dev.20251217.1",
+    "@vitest/coverage-v8": "4.0.16",
     "japanese-holidays": "1.0.10",
     "jest-extended": "7.0.0",
     "lefthook": "2.0.12",
@@ -67,8 +67,8 @@
     "typescript": "5.9.3",
     "unplugin-isolated-decl": "0.15.7",
     "vite": "7.3.0",
-    "vite-tsconfig-paths": "6.0.1",
-    "vitest": "4.0.15",
+    "vite-tsconfig-paths": "6.0.2",
+    "vitest": "4.0.16",
     "yaml": "2.8.2"
   }
 }
