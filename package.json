@@ -31,7 +31,7 @@
     "test": "vitest --watch",
     "test:unit": "vitest --passWithNoTests --run --coverage",
     "bench": "vitest bench",
-    "ncu": "npm-check-updates -u"
+    "ncu": "mise run ncu"
   },
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -59,7 +59,6 @@
     "@vitest/coverage-v8": "4.0.18",
     "japanese-holidays": "1.0.10",
     "jest-extended": "7.0.0",
-    "npm-check-updates": "19.3.2",
     "rolldown": "1.0.0-rc.4",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
