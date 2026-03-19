@@ -55,17 +55,16 @@
     "@holiday-jp/holiday_jp": "2.5.1",
     "@types/japanese-holidays": "1.0.3",
     "@types/node": "24.12.0",
-    "@typescript/native-preview": "7.0.0-dev.20260302.1",
-    "@vitest/coverage-v8": "4.0.18",
+    "@typescript/native-preview": "7.0.0-dev.20260311.1",
+    "@vitest/coverage-v8": "4.1.0",
     "japanese-holidays": "1.0.10",
     "jest-extended": "7.0.0",
-    "rolldown": "1.0.0-rc.8",
+    "rolldown": "1.0.0-rc.10",
     "tsx": "4.21.0",
     "unplugin-isolated-decl": "0.15.7",
-    "vite": "7.3.1",
-    "vite-tsconfig-paths": "6.1.1",
-    "vitest": "4.0.18",
+    "vite": "8.0.1",
+    "vitest": "4.1.0",
     "yaml": "2.8.2"
   },
-  "packageManager": "pnpm@10.30.3"
+  "packageManager": "pnpm@10.32.1"
 }
