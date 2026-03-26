@@ -51,20 +51,20 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.2",
-    "@biomejs/biome": "2.4.7",
+    "@biomejs/biome": "2.4.8",
     "@holiday-jp/holiday_jp": "2.5.1",
     "@types/japanese-holidays": "1.0.3",
     "@types/node": "24.12.0",
-    "@typescript/native-preview": "7.0.0-dev.20260311.1",
-    "@vitest/coverage-v8": "4.1.0",
+    "@typescript/native-preview": "7.0.0-dev.20260318.1",
+    "@vitest/coverage-v8": "4.1.1",
     "japanese-holidays": "1.0.10",
     "jest-extended": "7.0.0",
     "rolldown": "1.0.0-rc.10",
     "tsx": "4.21.0",
     "unplugin-isolated-decl": "0.15.7",
-    "vite": "8.0.1",
-    "vitest": "4.1.0",
-    "yaml": "2.8.2"
+    "vite": "8.0.2",
+    "vitest": "4.1.1",
+    "yaml": "2.8.3"
   },
   "packageManager": "pnpm@10.32.1"
 }

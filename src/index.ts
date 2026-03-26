@@ -74,5 +74,5 @@ const between = (start: Date, end: Date): Holiday[] => {
   return result
 }
 
-export { between, isHoliday }
 export type { Holiday }
+export { between, isHoliday }
