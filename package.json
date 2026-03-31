@@ -59,7 +59,7 @@
     "@vitest/coverage-v8": "4.1.1",
     "japanese-holidays": "1.0.10",
     "jest-extended": "7.0.0",
-    "rolldown": "1.0.0-rc.10",
+    "rolldown": "1.0.0-rc.11",
     "tsx": "4.21.0",
     "unplugin-isolated-decl": "0.15.7",
     "vite": "8.0.2",
