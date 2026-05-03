@@ -1,5 +1,5 @@
 // Generated from holidays_detailed.yml
-import { decodeHolidays } from './utils'
+import { decodeHolidays } from './utils.js'
 
 const names: string[] = [
   '元日',

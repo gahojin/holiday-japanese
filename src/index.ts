@@ -1,4 +1,4 @@
-import { holidays, names } from './holidays'
+import { holidays, names } from './holidays.js'
 
 const MINUTES_MILLISECONDS = 1000 * 60
 

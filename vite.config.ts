@@ -1,5 +1,5 @@
-import dts from 'vite-plugin-dts'
-import { defineConfig } from 'vitest/config'
+import dts from 'unplugin-dts/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -24,6 +24,7 @@ export default defineConfig({
         comments: false,
         preserveModules: true,
       },
+      platform: 'neutral',
       external: [],
       optimization: {
         inlineConst: { mode: 'all', pass: 5 },

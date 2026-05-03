@@ -1,5 +1,5 @@
 // ブラウザ環境か判定
-const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null
+const isNode = typeof process !== 'undefined' && !!process.versions?.node
 
 const decodeHolidays = (data: string): number[] => {
   const b = isNode ? Buffer.from(data, 'base64') : Uint8Array.from(atob(data), (c) => c.charCodeAt(0))

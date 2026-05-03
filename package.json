@@ -26,7 +26,7 @@
     "build": "vite build",
     "prepublishOnly": "pnpm run build",
     "lint": "biome check --write .",
-    "check": "tsgo",
+    "check": "tsc --noEmit",
     "check:packagejson": "attw --pack --profile esm-only .",
     "test": "vitest --watch",
     "test:unit": "vitest --passWithNoTests --run --coverage",
@@ -56,8 +56,8 @@
     "jest-extended": "7.0.0",
     "tsx": "4.21.0",
     "typescript": "6.0.3",
+    "unplugin-dts": "1.0.0",
     "vite": "8.0.10",
-    "vite-plugin-dts": "5.0.0",
     "vitest": "4.1.5",
     "yaml": "2.8.3"
   },
