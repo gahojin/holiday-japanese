@@ -1,8 +1,8 @@
 import { between as holidayJpBetween, isHoliday as holidayJpIsHoliday } from '@holiday-jp/holiday_jp'
 import { getHolidaysOf, isHoliday as japaneseHolidaysIsHoliday } from 'japanese-holidays'
 import { bench, describe } from 'vitest'
-import { rawHolidays } from '~/holidays_testdata'
-import { between, isHoliday } from '~/index'
+import { rawHolidays } from '~/holidays_testdata.js'
+import { between, isHoliday } from '~/index.js'
 
 // 祝日かの判定しかできないSet (旧実装と同等コード)
 const dateToNumber = (date: Date): number => {
