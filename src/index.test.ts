@@ -58,32 +58,32 @@ describe.each(scenarios)('isHoliday', ({ name, timezone, systemTimeUtc }) => {
 
   it(`${name}: 特定の日が祝日か`, () => {
     // スポーツの日
-    expect(isHoliday(new Date(2024, 9, 14))).toBeTrue()
-    expect(isHoliday(new Date(2024, 9, 15))).toBeFalse()
-    expect(isHoliday(new Date(2024, 9, 13))).toBeFalse()
+    expect(isHoliday(new Date(2024, 9, 14))).toBe(true)
+    expect(isHoliday(new Date(2024, 9, 15))).toBe(false)
+    expect(isHoliday(new Date(2024, 9, 13))).toBe(false)
 
     // 山の日
-    expect(isHoliday(new Date(2015, 7, 11))).toBeFalse()
+    expect(isHoliday(new Date(2015, 7, 11))).toBe(false)
     for (let year = 2016; year <= 2050; year++) {
       switch (year) {
         case 2020: {
-          expect(isHoliday(new Date(year, 7, 10))).toBeTrue()
-          expect(isHoliday(new Date(year, 7, 11))).toBeFalse()
+          expect(isHoliday(new Date(year, 7, 10))).toBe(true)
+          expect(isHoliday(new Date(year, 7, 11))).toBe(false)
           break
         }
         case 2021: {
-          expect(isHoliday(new Date(year, 7, 8))).toBeTrue()
-          expect(isHoliday(new Date(year, 7, 11))).toBeFalse()
+          expect(isHoliday(new Date(year, 7, 8))).toBe(true)
+          expect(isHoliday(new Date(year, 7, 11))).toBe(false)
           break
         }
         default: {
-          expect(isHoliday(new Date(year, 7, 11))).toBeTrue()
+          expect(isHoliday(new Date(year, 7, 11))).toBe(true)
           break
         }
       }
     }
     // 山の日 (振替休日)
-    expect(isHoliday(new Date(2021, 7, 9))).toBeTrue()
+    expect(isHoliday(new Date(2021, 7, 9))).toBe(true)
   })
 
   it('holidays.yml から取得した祝日が取得日として扱われるか', async () => {
@@ -91,7 +91,7 @@ describe.each(scenarios)('isHoliday', ({ name, timezone, systemTimeUtc }) => {
     const body = await res.text()
     const dataset: Record<string, string> = parse(body)
     for (const date of Object.keys(dataset)) {
-      expect(isHoliday(new Date(`${date}T00:00:00.000`))).toBeTrue()
+      expect(isHoliday(new Date(`${date}T00:00:00.000`))).toBe(true)
     }
   })
 })
@@ -114,7 +114,7 @@ describe.each(scenarios)('between', ({ name, timezone, systemTimeUtc }) => {
   })
 
   it(`${name}: 境界チェック`, () => {
-    expect(between(new Date(2025, 0, 2), new Date(2025, 0, 12))).toBeEmpty()
+    expect(between(new Date(2025, 0, 2), new Date(2025, 0, 12))).toHaveLength(0)
     expect(between(new Date(2025, 0, 1), new Date(2025, 0, 12))).toEqual([{ date: new Date(2025, 0, 1), nameJa: '元日', nameEn: `New Year's Day` }])
     expect(between(new Date(2025, 0, 13), new Date(2025, 0, 31))).toEqual([
       { date: new Date(2025, 0, 13), nameJa: '成人の日', nameEn: 'Coming of Age Day' },
@@ -129,10 +129,10 @@ describe.each(scenarios)('between', ({ name, timezone, systemTimeUtc }) => {
       { date: new Date(1970, 0, 15), nameJa: '成人の日', nameEn: 'Coming of Age Day' },
     ])
 
-    expect(between(new Date(2024, 1, 30), new Date(2024, 2, 1))).toBeEmpty()
+    expect(between(new Date(2024, 1, 30), new Date(2024, 2, 1))).toHaveLength(0)
 
     // データセットから外れた年の場合
-    expect(between(new Date(3000, 1, 30), new Date(3000, 2, 10))).toBeEmpty()
+    expect(between(new Date(3000, 1, 30), new Date(3000, 2, 10))).toHaveLength(0)
   })
 
   it(`${name}: 他ライブラリとのデータ互換性チェック`, () => {
