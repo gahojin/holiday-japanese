@@ -7,7 +7,6 @@ export default defineConfig({
   test: {
     environment: 'node',
     globals: true,
-    setupFiles: [],
     coverage: {
       exclude: [...coverageConfigDefaults.exclude, './scripts/**'],
     },
