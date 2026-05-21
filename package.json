@@ -48,7 +48,7 @@
     "@biomejs/biome": "2.4.15",
     "@holiday-jp/holiday_jp": "2.5.1",
     "@types/japanese-holidays": "1.0.3",
-    "@types/node": "24.12.4",
+    "@types/node": "25.8.0",
     "@vitest/coverage-v8": "4.1.6",
     "japanese-holidays": "1.0.10",
     "tsx": "4.21.0",
@@ -58,5 +58,5 @@
     "vitest": "4.1.6",
     "yaml": "2.9.0"
   },
-  "packageManager": "pnpm@11.0.6"
+  "packageManager": "pnpm@11.1.1"
 }
