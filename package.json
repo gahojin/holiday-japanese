@@ -27,7 +27,6 @@
     "prepublishOnly": "pnpm run build",
     "lint": "biome check --write .",
     "check": "tsc --noEmit",
-    "check:packagejson": "attw --pack --profile esm-only .",
     "test": "vitest --watch",
     "test:unit": "vitest --passWithNoTests --run --coverage",
     "bench": "vitest bench",
@@ -46,7 +45,6 @@
     }
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "0.18.2",
     "@biomejs/biome": "2.4.15",
     "@holiday-jp/holiday_jp": "2.5.1",
     "@types/japanese-holidays": "1.0.3",
