@@ -86,7 +86,7 @@ describe.each(scenarios)('isHoliday', ({ name, timezone, systemTimeUtc }) => {
     expect(isHoliday(new Date(2021, 7, 9))).toBe(true)
   })
 
-  it('holidays.yml から取得した祝日が取得日として扱われるか', async () => {
+  it('holidays.yml から取得した祝日が祝日として扱われるか', async () => {
     const res = await fetch(HOLIDAYS_URL)
     const body = await res.text()
     const dataset: Record<string, string> = parse(body)
