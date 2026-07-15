@@ -23,7 +23,7 @@
   "scripts": {
     "prepare": "biome migrate --write",
     "prebuild": "tsx scripts/build.ts",
-    "build": "vite build",
+    "build": "rolldown -c",
     "prepublishOnly": "pnpm run build",
     "lint": "biome check --write .",
     "check": "tsc --noEmit",
@@ -51,12 +51,12 @@
     "@types/node": "catalog:",
     "@vitest/coverage-v8": "catalog:",
     "japanese-holidays": "catalog:",
+    "rolldown": "catalog:",
+    "rolldown-plugin-dts": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
-    "unplugin-dts": "catalog:",
-    "vite": "catalog:",
     "vitest": "catalog:",
     "yaml": "catalog:"
   },
-  "packageManager": "pnpm@11.5.1"
+  "packageManager": "pnpm@11.10.0"
 }
