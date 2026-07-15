@@ -5,45 +5,84 @@ settings:
   dedupePeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@biomejs/biome':
+      specifier: 2.5.1
+      version: 2.5.1
+    '@holiday-jp/holiday_jp':
+      specifier: 2.5.1
+      version: 2.5.1
+    '@types/japanese-holidays':
+      specifier: 1.0.3
+      version: 1.0.3
+    '@types/node':
+      specifier: 25.9.4
+      version: 25.9.4
+    '@vitest/coverage-v8':
+      specifier: 4.1.9
+      version: 4.1.9
+    japanese-holidays:
+      specifier: 1.0.10
+      version: 1.0.10
+    tsx:
+      specifier: 4.22.4
+      version: 4.22.4
+    typescript:
+      specifier: 6.0.3
+      version: 6.0.3
+    unplugin-dts:
+      specifier: 1.0.3
+      version: 1.0.3
+    vite:
+      specifier: 8.1.0
+      version: 8.1.0
+    vitest:
+      specifier: 4.1.9
+      version: 4.1.9
+    yaml:
+      specifier: 2.9.0
+      version: 2.9.0
+
 importers:
 
   .:
     devDependencies:
       '@biomejs/biome':
-        specifier: 2.5.1
+        specifier: 'catalog:'
         version: 2.5.1
       '@holiday-jp/holiday_jp':
-        specifier: 2.5.1
+        specifier: 'catalog:'
         version: 2.5.1
       '@types/japanese-holidays':
-        specifier: 1.0.3
+        specifier: 'catalog:'
         version: 1.0.3
       '@types/node':
-        specifier: 25.9.4
+        specifier: 'catalog:'
         version: 25.9.4
       '@vitest/coverage-v8':
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(vitest@4.1.9)
       japanese-holidays:
-        specifier: 1.0.10
+        specifier: 'catalog:'
         version: 1.0.10
       tsx:
-        specifier: 4.22.4
+        specifier: 'catalog:'
         version: 4.22.4
       typescript:
-        specifier: 6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
       unplugin-dts:
-        specifier: 1.0.3
+        specifier: 'catalog:'
         version: 1.0.3(esbuild@0.28.1)(rolldown@1.1.3)(typescript@6.0.3)(vite@8.1.0)
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@25.9.4)(esbuild@0.28.1)(tsx@4.22.4)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@25.9.4)(@vitest/coverage-v8@4.1.9)(vite@8.1.0)
       yaml:
-        specifier: 2.9.0
+        specifier: 'catalog:'
         version: 2.9.0
 
 packages:
