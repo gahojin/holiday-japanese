@@ -1,6 +1,6 @@
 # holiday-japanese
 
-日本の祝日判定ユーティリティ
+日本の祝日/休日判定ユーティリティ
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![NPM Version](https://img.shields.io/npm/v/%40gahojin-inc%2Fholiday-japanese?activeTab=versions)](https://www.npmjs.com/package/@gahojin-inc/holiday-japanese)
@@ -45,26 +45,38 @@ type Holiday = {
 
 ## パフォーマンス
 
-- `isHoliday`: 本実装(holiday-japanese)はjapanese-holidaysの約2.1倍、holiday_jpの約190倍
-- `between`: 本実装(holiday-japanese)はjapanese-holidaysよりやや低速(1.38倍遅い)、holiday_jpとの比較では約216倍
+### Environment
+
+- Device: Mac mini (M4, 10-core)
+- Memory: 32 GB
+- OS: macOS 26.6.2
+- Node.js: v26.8.1
+- Vitest: 5.0.0
 
 **isHoliday**
  
 | name | hz | mean (ms) | p99 (ms) | rme |
 | --- | --- | --- | --- | --- |
-| holiday-japanese | 5,723,603.12 | 0.0002 | 0.0002 | ±0.41% |
-| holiday_jp | 30,008.23 | 0.0333 | 0.0387 | ±0.20% |
-| japanese-holidays | 2,720,609.62 | 0.0004 | 0.0005 | ±0.12% |
+| holiday-japanese | 6,314,857.44 | 0.0002 | 0.0002 | ±0.30% |
+| holiday_jp | 29,642.66 | 0.0346 | 0.0732 | ±0.59% |
+| japanese-holidays | 2,782,526.41 | 0.0004 | 0.0005 | ±0.08% |
  
-
-**between**
+**between (1 year)**
  
 | name | hz | mean (ms) | p99 (ms) | rme |
 | --- | --- | --- | --- | --- |
-| holiday-japanese | 655,844.48 | 0.0015 | 0.0019 | ±0.15% |
-| holiday_jp | 3,029.00 | 0.3301 | 0.3893 | ±0.20% |
-| japanese-holidays | 906,827.18 | 0.0011 | 0.0013 | ±0.14% |
+| holiday-japanese | 1,002,774.68 | 0.0010 | 0.0012 | ±0.08% |
+| holiday_jp | 3,039.62 | 0.3308 | 0.4082 | ±0.30% |
+| japanese-holidays | 930,743.92 | 0.0011 | 0.0013 | ±0.09% |
  
+**between (10 years)**
+ 
+| name | hz | mean (ms) | p99 (ms) | rme |
+| --- | --- | --- | --- | --- |
+| holiday-japanese | 63,266.00 | 0.0159 | 0.0186 | ±0.09% |
+| holiday_jp | 2,901.28 | 0.3451 | 0.3776 | ±0.12% |
+| japanese-holidays | 78,566.98 | 0.0129 | 0.0154 | ±0.12% |
+
 
 ## データセット
 
