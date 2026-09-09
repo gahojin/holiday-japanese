@@ -2,7 +2,7 @@ import { between as holidayJpBetween, isHoliday as holidayJpIsHoliday } from '@h
 import { getHolidaysOf, isHoliday as japaneseHolidaysIsHoliday } from 'japanese-holidays'
 import { bench, describe } from 'vitest'
 import { rawHolidays } from '~/holidays_testdata.js'
-import * as mod from '~/index.js'
+import * as mod from '../dist/index.js'
 
 const { between, isHoliday } = mod
 
@@ -25,53 +25,93 @@ const setVersionIsHoliday = (date: Date): boolean => {
 }
 
 describe('benchmark test: "isHoliday"', () => {
-  bench('holiday-japanese', () => {
-    isHoliday(new Date('2024-10-14'))
-    isHoliday(new Date('2024-10-15'))
-  })
+  bench(
+    'holiday-japanese',
+    () => {
+      isHoliday(new Date('2024-10-14'))
+      isHoliday(new Date('2024-10-15'))
+    },
+    { time: 2000 },
+  )
 
-  bench('holiday_jp', () => {
-    holidayJpIsHoliday(new Date('2024-10-14'))
-    holidayJpIsHoliday(new Date('2024-10-15'))
-  })
+  bench(
+    'holiday_jp',
+    () => {
+      holidayJpIsHoliday(new Date('2024-10-14'))
+      holidayJpIsHoliday(new Date('2024-10-15'))
+    },
+    { time: 2000 },
+  )
 
-  bench('japanese-holidays', () => {
-    japaneseHolidaysIsHoliday(new Date('2024-10-14'))
-    japaneseHolidaysIsHoliday(new Date('2024-10-15'))
-  })
+  bench(
+    'japanese-holidays',
+    () => {
+      japaneseHolidaysIsHoliday(new Date('2024-10-14'))
+      japaneseHolidaysIsHoliday(new Date('2024-10-15'))
+    },
+    { time: 2000 },
+  )
 
-  bench('set', () => {
-    setVersionIsHoliday(new Date('2024-10-14'))
-    setVersionIsHoliday(new Date('2024-10-15'))
-  })
+  bench(
+    'set',
+    () => {
+      setVersionIsHoliday(new Date('2024-10-14'))
+      setVersionIsHoliday(new Date('2024-10-15'))
+    },
+    { time: 2000 },
+  )
 })
 
 describe('benchmark test: "between" (1 year)', () => {
-  bench('holiday-japanese', () => {
-    between(new Date('2020-01-01'), new Date('2020-12-31'))
-  })
+  bench(
+    'holiday-japanese',
+    () => {
+      between(new Date('2020-01-01'), new Date('2020-12-31'))
+    },
+    { time: 2000 },
+  )
 
-  bench('holiday_jp', () => {
-    holidayJpBetween(new Date('2020-01-01'), new Date('2020-12-31'))
-  })
+  bench(
+    'holiday_jp',
+    () => {
+      holidayJpBetween(new Date('2020-01-01'), new Date('2020-12-31'))
+    },
+    { time: 2000 },
+  )
 
-  bench('japanese-holidays', () => {
-    getHolidaysOf(2020, true)
-  })
+  bench(
+    'japanese-holidays',
+    () => {
+      getHolidaysOf(2020, true)
+    },
+    { time: 2000 },
+  )
 })
 
 describe('benchmark test: "between" (10 years)', () => {
-  bench('holiday-japanese', () => {
-    between(new Date('2010-01-01'), new Date('2020-12-31'))
-  })
+  bench(
+    'holiday-japanese',
+    () => {
+      between(new Date('2010-01-01'), new Date('2020-12-31'))
+    },
+    { time: 2000 },
+  )
 
-  bench('holiday_jp', () => {
-    holidayJpBetween(new Date('2010-01-01'), new Date('2020-12-31'))
-  })
+  bench(
+    'holiday_jp',
+    () => {
+      holidayJpBetween(new Date('2010-01-01'), new Date('2020-12-31'))
+    },
+    { time: 2000 },
+  )
 
-  bench('japanese-holidays', () => {
-    for (let year = 2010; year <= 2020; year++) {
-      getHolidaysOf(year, true)
-    }
-  })
+  bench(
+    'japanese-holidays',
+    () => {
+      for (let year = 2010; year <= 2020; year++) {
+        getHolidaysOf(year, true)
+      }
+    },
+    { time: 2000 },
+  )
 })

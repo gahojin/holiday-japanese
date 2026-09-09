@@ -45,32 +45,37 @@ type Holiday = {
 
 ## パフォーマンス
 
-- `isHoliday`: 本実装(holiday-japanese)はjapanese-holidaysの約2.1倍、holiday_jpの約190倍
-- `between`: 本実装(holiday-japanese)はjapanese-holidaysよりやや低速(1.38倍遅い)、holiday_jpとの比較では約216倍
+### Environment
+
+- Device: Mac mini (M4, 10-core)
+- Memory: 32 GB
+- OS: macOS 26.6.2
+- Node.js: v26.8.1
+- Vitest: 4.1.11
 
 **isHoliday**
  
 | name | hz | mean (ms) | p99 (ms) | rme |
 | --- | --- | --- | --- | --- |
-| holiday-japanese | 6,061,706.84 | 0.0002 | 0.0002 | ±0.50% |
-| holiday_jp | 30,121.74 | 0.0332 | 0.0379 | ±0.12% |
-| japanese-holidays | 2,734,048.31 | 0.0004 | 0.0005 | ±0.13% |
+| holiday-japanese | 5,974,990.01 | 0.0002 | 0.0002 | ±0.40% |
+| holiday_jp | 30,193.28 | 0.0331 | 0.0379 | ±0.08% |
+| japanese-holidays | 2,677,276.10 | 0.0004 | 0.0006 | ±0.76% |
  
 **between (1 year)**
  
 | name | hz | mean (ms) | p99 (ms) | rme |
 | --- | --- | --- | --- | --- |
-| holiday-japanese | 666,004.1 | 0.0015 | 0.0018 | ±0.15% |
-| holiday_jp | 3,083.28 | 0.3243 | 0.3698 | ±0.23% |
-| japanese-holidays | 846,898.60 | 0.0012 | 0.0020 | ±0.18% |
+| holiday-japanese | 970,987.36 | 0.0010 | 0.0013 | ±0.26% |
+| holiday_jp | 2,980.65 | 0.3355 | 0.3652 | ±0.08% |
+| japanese-holidays | 894,511.11 | 0.0011 | 0.0014 | ±1.24% |
  
 **between (10 years)**
  
 | name | hz | mean (ms) | p99 (ms) | rme |
 | --- | --- | --- | --- | --- |
-| holiday-japanese | 44,962.35 | 0.0222 | 0.0374 | ±1.15% |
-| holiday_jp | 2,915.76 | 0.3430 | 0.4166 | ±0.20% |
-| japanese-holidays | 67,535.27 | 0.0148 | 0.0181 | ±0.22% |
+| holiday-japanese | 57,712.28 | 0.0173 | 0.0215 | ±0.09% |
+| holiday_jp | 2,680.62 | 0.3362 | 0.3906 | ±0.63% |
+| japanese-holidays | 72,352.05 | 0.0138 | 0.0166 | ±0.09% |
 
 
 ## データセット
