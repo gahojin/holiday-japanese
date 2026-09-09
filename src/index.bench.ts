@@ -1,6 +1,6 @@
 import { between as holidayJpBetween, isHoliday as holidayJpIsHoliday } from '@holiday-jp/holiday_jp'
 import { getHolidaysOf, isHoliday as japaneseHolidaysIsHoliday } from 'japanese-holidays'
-import { bench, describe } from 'vitest'
+import { test } from 'vitest'
 import { rawHolidays } from '~/holidays_testdata.js'
 import * as mod from '../dist/index.js'
 
@@ -24,94 +24,54 @@ const setVersionIsHoliday = (date: Date): boolean => {
   return holidaySet.has(dateToNumber(date))
 }
 
-describe('benchmark test: "isHoliday"', () => {
-  bench(
-    'holiday-japanese',
-    () => {
-      isHoliday(new Date('2024-10-14'))
-      isHoliday(new Date('2024-10-15'))
-    },
-    { time: 2000 },
-  )
+test('benchmark test: "isHoliday"', async ({ bench }) => {
+  await bench('holiday-japanese', () => {
+    isHoliday(new Date('2024-10-14'))
+    isHoliday(new Date('2024-10-15'))
+  }).run({ time: 2000, warmupTime: 500 })
 
-  bench(
-    'holiday_jp',
-    () => {
-      holidayJpIsHoliday(new Date('2024-10-14'))
-      holidayJpIsHoliday(new Date('2024-10-15'))
-    },
-    { time: 2000 },
-  )
+  await bench('holiday_jp', () => {
+    holidayJpIsHoliday(new Date('2024-10-14'))
+    holidayJpIsHoliday(new Date('2024-10-15'))
+  }).run({ time: 2000, warmupTime: 500 })
 
-  bench(
-    'japanese-holidays',
-    () => {
-      japaneseHolidaysIsHoliday(new Date('2024-10-14'))
-      japaneseHolidaysIsHoliday(new Date('2024-10-15'))
-    },
-    { time: 2000 },
-  )
+  await bench('japanese-holidays', () => {
+    japaneseHolidaysIsHoliday(new Date('2024-10-14'))
+    japaneseHolidaysIsHoliday(new Date('2024-10-15'))
+  }).run({ time: 2000, warmupTime: 500 })
 
-  bench(
-    'set',
-    () => {
-      setVersionIsHoliday(new Date('2024-10-14'))
-      setVersionIsHoliday(new Date('2024-10-15'))
-    },
-    { time: 2000 },
-  )
+  await bench('set', () => {
+    setVersionIsHoliday(new Date('2024-10-14'))
+    setVersionIsHoliday(new Date('2024-10-15'))
+  }).run({ time: 2000, warmupTime: 500 })
 })
 
-describe('benchmark test: "between" (1 year)', () => {
-  bench(
-    'holiday-japanese',
-    () => {
-      between(new Date('2020-01-01'), new Date('2020-12-31'))
-    },
-    { time: 2000 },
-  )
+test('benchmark test: "between" (1 year)', async ({ bench }) => {
+  await bench('holiday-japanese', () => {
+    between(new Date('2020-01-01'), new Date('2020-12-31'))
+  }).run({ time: 2000, warmupTime: 500 })
 
-  bench(
-    'holiday_jp',
-    () => {
-      holidayJpBetween(new Date('2020-01-01'), new Date('2020-12-31'))
-    },
-    { time: 2000 },
-  )
+  await bench('holiday_jp', () => {
+    holidayJpBetween(new Date('2020-01-01'), new Date('2020-12-31'))
+  }).run({ time: 2000, warmupTime: 500 })
 
-  bench(
-    'japanese-holidays',
-    () => {
-      getHolidaysOf(2020, true)
-    },
-    { time: 2000 },
-  )
+  await bench('japanese-holidays', () => {
+    getHolidaysOf(2020, true)
+  }).run({ time: 2000, warmupTime: 500 })
 })
 
-describe('benchmark test: "between" (10 years)', () => {
-  bench(
-    'holiday-japanese',
-    () => {
-      between(new Date('2010-01-01'), new Date('2020-12-31'))
-    },
-    { time: 2000 },
-  )
+test('benchmark test: "between" (10 years)', async ({ bench }) => {
+  await bench('holiday-japanese', () => {
+    between(new Date('2011-01-01'), new Date('2020-12-31'))
+  }).run({ time: 2000, warmupTime: 500 })
 
-  bench(
-    'holiday_jp',
-    () => {
-      holidayJpBetween(new Date('2010-01-01'), new Date('2020-12-31'))
-    },
-    { time: 2000 },
-  )
+  await bench('holiday_jp', () => {
+    holidayJpBetween(new Date('2011-01-01'), new Date('2020-12-31'))
+  }).run({ time: 2000, warmupTime: 500 })
 
-  bench(
-    'japanese-holidays',
-    () => {
-      for (let year = 2010; year <= 2020; year++) {
-        getHolidaysOf(year, true)
-      }
-    },
-    { time: 2000 },
-  )
+  await bench('japanese-holidays', () => {
+    for (let year = 2011; year <= 2020; year++) {
+      getHolidaysOf(year, true)
+    }
+  }).run({ time: 2000, warmupTime: 500 })
 })

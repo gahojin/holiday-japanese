@@ -51,31 +51,31 @@ type Holiday = {
 - Memory: 32 GB
 - OS: macOS 26.6.2
 - Node.js: v26.8.1
-- Vitest: 4.1.11
+- Vitest: 5.0.0
 
 **isHoliday**
  
 | name | hz | mean (ms) | p99 (ms) | rme |
 | --- | --- | --- | --- | --- |
-| holiday-japanese | 5,974,990.01 | 0.0002 | 0.0002 | ±0.40% |
-| holiday_jp | 30,193.28 | 0.0331 | 0.0379 | ±0.08% |
-| japanese-holidays | 2,677,276.10 | 0.0004 | 0.0006 | ±0.76% |
+| holiday-japanese | 6,314,857.44 | 0.0002 | 0.0002 | ±0.30% |
+| holiday_jp | 29,642.66 | 0.0346 | 0.0732 | ±0.59% |
+| japanese-holidays | 2,782,526.41 | 0.0004 | 0.0005 | ±0.08% |
  
 **between (1 year)**
  
 | name | hz | mean (ms) | p99 (ms) | rme |
 | --- | --- | --- | --- | --- |
-| holiday-japanese | 970,987.36 | 0.0010 | 0.0013 | ±0.26% |
-| holiday_jp | 2,980.65 | 0.3355 | 0.3652 | ±0.08% |
-| japanese-holidays | 894,511.11 | 0.0011 | 0.0014 | ±1.24% |
+| holiday-japanese | 1,002,774.68 | 0.0010 | 0.0012 | ±0.08% |
+| holiday_jp | 3,039.62 | 0.3308 | 0.4082 | ±0.30% |
+| japanese-holidays | 930,743.92 | 0.0011 | 0.0013 | ±0.09% |
  
 **between (10 years)**
  
 | name | hz | mean (ms) | p99 (ms) | rme |
 | --- | --- | --- | --- | --- |
-| holiday-japanese | 57,712.28 | 0.0173 | 0.0215 | ±0.09% |
-| holiday_jp | 2,680.62 | 0.3362 | 0.3906 | ±0.63% |
-| japanese-holidays | 72,352.05 | 0.0138 | 0.0166 | ±0.09% |
+| holiday-japanese | 63,266.00 | 0.0159 | 0.0186 | ±0.09% |
+| holiday_jp | 2,901.28 | 0.3451 | 0.3776 | ±0.12% |
+| japanese-holidays | 78,566.98 | 0.0129 | 0.0154 | ±0.12% |
 
 
 ## データセット
