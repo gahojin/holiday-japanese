@@ -1,8 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
     "target": "es2022",
     "module": "nodenext",
     "moduleResolution": "nodenext",
@@ -30,6 +28,6 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "scripts"],
   "exclude": ["dist", "node_modules"]
 }

@@ -2,7 +2,9 @@ import { between as holidayJpBetween, isHoliday as holidayJpIsHoliday } from '@h
 import { getHolidaysOf, isHoliday as japaneseHolidaysIsHoliday } from 'japanese-holidays'
 import { bench, describe } from 'vitest'
 import { rawHolidays } from '~/holidays_testdata.js'
-import { between, isHoliday } from '~/index.js'
+import * as mod from '~/index.js'
+
+const { between, isHoliday } = mod
 
 // 祝日かの判定しかできないSet (旧実装と同等コード)
 const dateToNumber = (date: Date): number => {
@@ -44,7 +46,7 @@ describe('benchmark test: "isHoliday"', () => {
   })
 })
 
-describe('benchmark test: "between"', () => {
+describe('benchmark test: "between" (1 year)', () => {
   bench('holiday-japanese', () => {
     between(new Date('2020-01-01'), new Date('2020-12-31'))
   })
@@ -55,5 +57,21 @@ describe('benchmark test: "between"', () => {
 
   bench('japanese-holidays', () => {
     getHolidaysOf(2020, true)
+  })
+})
+
+describe('benchmark test: "between" (10 years)', () => {
+  bench('holiday-japanese', () => {
+    between(new Date('2010-01-01'), new Date('2020-12-31'))
+  })
+
+  bench('holiday_jp', () => {
+    holidayJpBetween(new Date('2010-01-01'), new Date('2020-12-31'))
+  })
+
+  bench('japanese-holidays', () => {
+    for (let year = 2010; year <= 2020; year++) {
+      getHolidaysOf(year, true)
+    }
   })
 })

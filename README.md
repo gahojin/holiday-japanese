@@ -1,6 +1,6 @@
 # holiday-japanese
 
-日本の祝日判定ユーティリティ
+日本の祝日/休日判定ユーティリティ
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![NPM Version](https://img.shields.io/npm/v/%40gahojin-inc%2Fholiday-japanese?activeTab=versions)](https://www.npmjs.com/package/@gahojin-inc/holiday-japanese)
@@ -52,19 +52,26 @@ type Holiday = {
  
 | name | hz | mean (ms) | p99 (ms) | rme |
 | --- | --- | --- | --- | --- |
-| holiday-japanese | 5,723,603.12 | 0.0002 | 0.0002 | ±0.41% |
-| holiday_jp | 30,008.23 | 0.0333 | 0.0387 | ±0.20% |
-| japanese-holidays | 2,720,609.62 | 0.0004 | 0.0005 | ±0.12% |
+| holiday-japanese | 6,061,706.84 | 0.0002 | 0.0002 | ±0.50% |
+| holiday_jp | 30,121.74 | 0.0332 | 0.0379 | ±0.12% |
+| japanese-holidays | 2,734,048.31 | 0.0004 | 0.0005 | ±0.13% |
  
-
-**between**
+**between (1 year)**
  
 | name | hz | mean (ms) | p99 (ms) | rme |
 | --- | --- | --- | --- | --- |
-| holiday-japanese | 655,844.48 | 0.0015 | 0.0019 | ±0.15% |
-| holiday_jp | 3,029.00 | 0.3301 | 0.3893 | ±0.20% |
-| japanese-holidays | 906,827.18 | 0.0011 | 0.0013 | ±0.14% |
+| holiday-japanese | 666,004.1 | 0.0015 | 0.0018 | ±0.15% |
+| holiday_jp | 3,083.28 | 0.3243 | 0.3698 | ±0.23% |
+| japanese-holidays | 846,898.60 | 0.0012 | 0.0020 | ±0.18% |
  
+**between (10 years)**
+ 
+| name | hz | mean (ms) | p99 (ms) | rme |
+| --- | --- | --- | --- | --- |
+| holiday-japanese | 44,962.35 | 0.0222 | 0.0374 | ±1.15% |
+| holiday_jp | 2,915.76 | 0.3430 | 0.4166 | ±0.20% |
+| japanese-holidays | 67,535.27 | 0.0148 | 0.0181 | ±0.22% |
+
 
 ## データセット
 
