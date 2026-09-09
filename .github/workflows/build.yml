@@ -61,4 +61,4 @@ jobs:
         run: pnpm run test:unit
 
       - name: Run benchmarks
-        run: pnpm run bench --run
+        run: pnpm run bench
