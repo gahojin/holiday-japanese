@@ -1,9 +1,9 @@
-import { holidays, names } from './holidays.js'
+import { EPOCH_DAY_MAX, holidays, names } from './holidays.js'
 
-const MINUTES_MILLISECONDS = 1000 * 60
+const MINUTES_MS = 1000 * 60
 
 // 基準日
-const DATE_MILLISECONDS = MINUTES_MILLISECONDS * 60 * 24
+const DATE_MS = MINUTES_MS * 60 * 24
 
 // 祝日データは、基準日からの日数と名称インデックスの順で格納されている
 const HOLIDAYS_LENGTH = holidays.length
@@ -15,29 +15,36 @@ type Holiday = {
   nameEn: string
 }
 
-const toEpochDay = (date: Date): number => {
-  const offsetMillis = date.getTimezoneOffset() * MINUTES_MILLISECONDS
-  return Math.floor((date.getTime() - offsetMillis) / DATE_MILLISECONDS)
+const fromEpochDay = (day: number, offset: number) => new Date(day * DATE_MS + offset)
+
+const toEpochDay = (date: Date) => {
+  const offsetMillis = date.getTimezoneOffset() * MINUTES_MS
+  return Math.floor((date.getTime() - offsetMillis) / DATE_MS)
 }
 
-const fromEpochDay = (day: number, timezoneOffset: number): Date => {
-  return new Date(day * DATE_MILLISECONDS + timezoneOffset)
+const decodeBits = () => {
+  const result = new Uint8Array((EPOCH_DAY_MAX >> 3) + 1)
+  for (let i = 0; i < holidays.length; i += 2) {
+    const day = holidays[i]
+    result[day >> 3] |= 1 << (day & 7)
+  }
+  return result
 }
 
-// ハッシュテーブルにより祝日かの判定を行う
-const holidaySet = new Set(holidays.filter((_, i) => i % 2 === 0))
+// ビット演算により祝日かの判定を行う
+const holidayBits = decodeBits()
 
 const isHoliday = (date: Date): boolean => {
-  const epochDay = toEpochDay(date)
-  return holidaySet.has(epochDay)
+  const day = toEpochDay(date)
+  return (holidayBits[day >> 3] & (1 << (day & 7))) !== 0
 }
 
-// 2分探索により祝日を抽出する
-
+// 2分探索により祝日/休日を抽出する
 const between = (start: Date, end: Date): Holiday[] => {
-  const epochStartDay = toEpochDay(start)
-  const epochEndDay = toEpochDay(end)
-  const timezoneOffset = start.getTimezoneOffset() * MINUTES_MILLISECONDS
+  const startDay = toEpochDay(start)
+  const endDay = toEpochDay(end)
+  const offset = start.getTimezoneOffset() * MINUTES_MS
+  const result: Holiday[] = []
 
   let low = 0
   let high = HOLIDAYS_HIGH
@@ -47,7 +54,7 @@ const between = (start: Date, end: Date): Holiday[] => {
   while (low <= high) {
     const mid = (low + high) >> 1
     const currentDay = holidays[mid << 1]
-    if (currentDay < epochStartDay) {
+    if (currentDay < startDay) {
       low = mid + 1
     } else {
       startIndex = mid
@@ -55,20 +62,17 @@ const between = (start: Date, end: Date): Holiday[] => {
     }
   }
 
-  const result: Holiday[] = []
-  let i = startIndex << 1
-  while (i < HOLIDAYS_LENGTH) {
+  for (let i = startIndex << 1; i < HOLIDAYS_LENGTH; i += 2) {
     const date = holidays[i]
-    const nameIndex = holidays[i + 1]
-    if (date > epochEndDay) {
+    if (date > endDay) {
       break
     }
+    const n = holidays[i + 1]
     result.push({
-      date: fromEpochDay(date, timezoneOffset),
-      nameJa: names[nameIndex],
-      nameEn: names[nameIndex + 1],
+      date: fromEpochDay(date, offset),
+      nameJa: names[n],
+      nameEn: names[n + 1],
     })
-    i += 2
   }
 
   return result

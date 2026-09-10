@@ -73,10 +73,11 @@ for (const [day, index] of tmpHolidaysData) {
 const code = `// Generated from holidays_detailed.yml
 import { decodeHolidays } from './utils.js'
 
+const EPOCH_DAY_MAX = ${tmpHolidaysData[tmpHolidaysData.length - 1][0]}
 const names: string[] = ${JSON.stringify(holidayNames)}
 const holidays: number[] = decodeHolidays('${buffer.toString('base64')}')
 
-export { names, holidays }
+export { EPOCH_DAY_MAX, names, holidays }
 `
 fs.writeFileSync(path.join(import.meta.dirname, '../src/holidays.ts'), code)
 
