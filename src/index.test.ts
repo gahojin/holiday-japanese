@@ -94,6 +94,18 @@ describe.each(scenarios)('isHoliday', ({ name, timezone, systemTimeUtc }) => {
       expect(isHoliday(new Date(`${date}T00:00:00.000`))).toBe(true)
     }
   })
+
+  it('境界値', () => {
+    expect(isHoliday(new Date(1970, 0, 1))).toBe(true)
+
+    // データセットから外れた年の場合
+    expect(isHoliday(new Date(1969, 11, 31))).toBe(false)
+    expect(isHoliday(new Date(3000, 0, 1))).toBe(false)
+  })
+
+  it('不正データ', () => {
+    expect(isHoliday(new Date('invalid'))).toBe(false)
+  })
 })
 
 describe.each(scenarios)('between', ({ name, timezone, systemTimeUtc }) => {
@@ -132,7 +144,13 @@ describe.each(scenarios)('between', ({ name, timezone, systemTimeUtc }) => {
     expect(between(new Date(2024, 1, 30), new Date(2024, 2, 1))).toHaveLength(0)
 
     // データセットから外れた年の場合
-    expect(between(new Date(3000, 1, 30), new Date(3000, 2, 10))).toHaveLength(0)
+    expect(between(new Date(3000, 0, 1), new Date(3000, 2, 10))).toHaveLength(0)
+  })
+
+  it('不正データ', () => {
+    expect(between(new Date('invalid'), new Date(2025, 0, 31))).toHaveLength(0)
+    expect(between(new Date(1970, 0, 1), new Date('invalid'))).toHaveLength(0)
+    expect(between(new Date('invalid'), new Date('invalid'))).toHaveLength(0)
   })
 
   it(`${name}: 他ライブラリとのデータ互換性チェック`, () => {

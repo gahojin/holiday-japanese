@@ -27,7 +27,16 @@ export default defineConfig({
   },
   platform: 'neutral',
   input: getInputIndexFiles(pkg.exports),
-  output: [{ dir: 'dist', format: 'es', sourcemap: true, cleanDir: true, comments: { annotation: true, jsdoc: false, legal: true } }],
+  output: [
+    {
+      dir: 'dist',
+      format: 'es',
+      minify: { mangle: false, codegen: { removeWhitespace: false } },
+      sourcemap: true,
+      cleanDir: true,
+      comments: { annotation: true, jsdoc: false, legal: true },
+    },
+  ],
   plugins: [
     dts({
       generator: 'oxc',

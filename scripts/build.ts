@@ -73,10 +73,16 @@ for (const [day, index] of tmpHolidaysData) {
 const code = `// Generated from holidays_detailed.yml
 import { decodeHolidays } from './utils.js'
 
+const EPOCH_DAY_MAX = ${tmpHolidaysData[tmpHolidaysData.length - 1][0]}
+
+// 祝日データは、基準日からの日数と名称インデックスの順で格納されている
+const HOLIDAYS_LENGTH = ${rawHolidaysData.length}
+const HOLIDAYS_HIGH = ${(rawHolidaysData.length >> 1) - 1}
+
 const names: string[] = ${JSON.stringify(holidayNames)}
 const holidays: number[] = decodeHolidays('${buffer.toString('base64')}')
 
-export { names, holidays }
+export { EPOCH_DAY_MAX, HOLIDAYS_LENGTH, HOLIDAYS_HIGH, names, holidays }
 `
 fs.writeFileSync(path.join(import.meta.dirname, '../src/holidays.ts'), code)
 

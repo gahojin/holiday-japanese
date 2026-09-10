@@ -1,20 +1,27 @@
-// ブラウザ環境か判定
-const isNode = typeof process !== 'undefined' && !!process.versions?.node
+const decodeBase64 = (data: string) => {
+  if (typeof globalThis.Buffer === 'undefined') {
+    const binary = atob(data)
+    const bytes = new Uint8Array(binary.length)
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i)
+    }
+    return bytes
+  }
+  return globalThis.Buffer.from(data, 'base64')
+}
 
 const decodeHolidays = (data: string): number[] => {
-  const b = isNode ? Buffer.from(data, 'base64') : Uint8Array.from(atob(data), (c) => c.charCodeAt(0))
-  const l = b.length
-  const n = l >> 1
-  const r = new Array<number>(n << 1)
+  const bytes = decodeBase64(data)
+  const len = bytes.length
+  const result = new Array<number>(len)
 
-  let o = 0
-  let d = 0
-  while (o < l) {
-    d += b[o]
-    r[o++] = d
-    r[o] = b[o++]
+  let day = 0 // epochDay
+  for (let i = 0; i < len; i += 2) {
+    day += bytes[i]
+    result[i] = day
+    result[i + 1] = bytes[i + 1]
   }
-  return r
+  return result
 }
 
 export { decodeHolidays }
