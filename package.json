@@ -29,7 +29,8 @@
     "check": "tsc --noEmit",
     "test": "vitest --watch",
     "test:unit": "vitest --passWithNoTests --run --coverage",
-    "bench": "vitest bench",
+    "bench": "vitest bench --run",
+    "bench:markdown": "pnpm run bench --reporter=json --outputFile=bench-result.json && tsx scripts/report.ts",
     "ncu": "mise run ncu"
   },
   "main": "dist/index.js",
