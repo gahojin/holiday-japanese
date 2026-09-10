@@ -36,7 +36,7 @@ const holidayBits = decodeBits()
 
 const isHoliday = (date: Date): boolean => {
   const day = toEpochDay(date)
-  return !Number.isNaN(day) && (holidayBits[day >> 3] & (1 << (day & 7))) !== 0
+  return day >= 0 && day <= EPOCH_DAY_MAX && (holidayBits[day >> 3] & (1 << (day & 7))) !== 0
 }
 
 // 2分探索により祝日/休日を抽出する
