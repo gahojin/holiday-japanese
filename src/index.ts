@@ -1,13 +1,9 @@
-import { EPOCH_DAY_MAX, holidays, names } from './holidays.js'
+import { EPOCH_DAY_MAX, HOLIDAYS_HIGH, HOLIDAYS_LENGTH, holidays, names } from './holidays.js'
 
 const MINUTES_MS = 1000 * 60
 
 // 基準日
 const DATE_MS = MINUTES_MS * 60 * 24
-
-// 祝日データは、基準日からの日数と名称インデックスの順で格納されている
-const HOLIDAYS_LENGTH = holidays.length
-const HOLIDAYS_HIGH = (HOLIDAYS_LENGTH >> 1) - 1
 
 type Holiday = {
   date: Date
