@@ -36,13 +36,17 @@ const holidayBits = decodeBits()
 
 const isHoliday = (date: Date): boolean => {
   const day = toEpochDay(date)
-  return (holidayBits[day >> 3] & (1 << (day & 7))) !== 0
+  return !Number.isNaN(day) && (holidayBits[day >> 3] & (1 << (day & 7))) !== 0
 }
 
 // 2分探索により祝日/休日を抽出する
 const between = (start: Date, end: Date): Holiday[] => {
   const startDay = toEpochDay(start)
   const endDay = toEpochDay(end)
+  if (Number.isNaN(startDay) || Number.isNaN(endDay)) {
+    return []
+  }
+
   const offset = start.getTimezoneOffset() * MINUTES_MS
   const result: Holiday[] = []
 
