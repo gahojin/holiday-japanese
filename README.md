@@ -53,7 +53,7 @@ type Holiday = {
 - Node.js: v26.8.1
 - Vitest: 5.0.0
 
-*** isHoliday ***
+**isHoliday**
 
 | name | hz | mean (ms) | p99 (ms) | rme |
 |---|---|---|---|---|
@@ -61,7 +61,7 @@ type Holiday = {
 | holiday_jp | 30,275.16 | 0.0331 | 0.0376 | ±0.06% |
 | japanese-holidays | 2,791,353.89 | 0.0004 | 0.0005 | ±0.42% |
 
-*** between (1 year) ***
+**between (1 year)**
 
 | name | hz | mean (ms) | p99 (ms) | rme |
 |---|---|---|---|---|
@@ -69,7 +69,7 @@ type Holiday = {
 | holiday_jp | 3,073.43 | 0.3256 | 0.3528 | ±0.07% |
 | japanese-holidays | 815,277.09 | 0.0012 | 0.0015 | ±0.08% |
 
-*** between (10 years) ***
+**between (10 years)**
 
 | name | hz | mean (ms) | p99 (ms) | rme |
 |---|---|---|---|---|

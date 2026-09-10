@@ -23,7 +23,7 @@ for (const testFile of data.testResults || []) {
 
     const title = result.title.replace('benchmark test: ', '').replaceAll('"', '')
 
-    markdownOutput += `\n*** ${title} ***\n\n`
+    markdownOutput += `\n**${title}**\n\n`
     markdownOutput += '| name | hz | mean (ms) | p99 (ms) | rme |\n'
     markdownOutput += '|---|---|---|---|---|\n'
 
