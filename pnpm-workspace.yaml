@@ -9,16 +9,16 @@ dedupePeers: true
 
 catalog:
   japanese-holidays: 1.0.10
-  rolldown: 1.2.6
-  rolldown-plugin-dts: 0.28.2
-  tsx: 4.23.12
+  rolldown: 1.2.7
+  rolldown-plugin-dts: 0.28.5
+  tsx: 4.23.13
   typescript: 7.0.2
   vitest: &vitest_ver 5.0.0
   yaml: 2.9.0
-  '@biomejs/biome': 2.5.10
+  '@biomejs/biome': 2.5.12
   '@holiday-jp/holiday_jp': 2.5.1
   '@types/japanese-holidays': 1.0.3
-  '@types/node': 26.4.0
+  '@types/node': 26.4.1
   '@vitest/coverage-v8': *vitest_ver
 
 overrides:
