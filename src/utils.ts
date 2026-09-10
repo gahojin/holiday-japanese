@@ -1,5 +1,5 @@
 const decodeBase64 = (data: string) => {
-  if (typeof Buffer === 'undefined') {
+  if (typeof globalThis.Buffer === 'undefined') {
     const binary = atob(data)
     const bytes = new Uint8Array(binary.length)
     for (let i = 0; i < binary.length; i++) {
@@ -7,7 +7,7 @@ const decodeBase64 = (data: string) => {
     }
     return bytes
   }
-  return Buffer.from(data, 'base64')
+  return globalThis.Buffer.from(data, 'base64')
 }
 
 const decodeHolidays = (data: string): number[] => {
