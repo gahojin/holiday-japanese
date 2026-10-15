@@ -9,7 +9,7 @@ dedupePeers: true
 
 catalog:
   japanese-holidays: 1.0.10
-  rolldown: 1.2.12
+  rolldown: 1.2.13
   rolldown-plugin-dts: 0.28.6
   tsx: 4.23.15
   typescript: 7.0.2
